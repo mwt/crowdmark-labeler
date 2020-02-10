@@ -47,3 +47,9 @@ Crowdmark Labeler is licensed under the [MIT License](LICENSE).
 
 Why does the inserted text look different/bad on my device?
 > The script uses the font "Courier" when inserting text. While all versions of Acrobat reader, Windows, and Mac OSX have this font, not all readers and systems do (eg. Android). This is not a limitation unless you intend to print with a device that does not support this font.
+
+Does this support documents with A4, legal, etc. paper?
+> No, it only supports letter paper at the moment. It should be easy to add other formats. Please create an issue (or pull request) if you would like to see any other paper size supported.
+
+Can I install this function using pip?
+> No, this is just a script. It is not currently a Python package.

@@ -52,4 +52,4 @@ Does this support documents with A4, legal, etc. paper?
 > No, it only supports letter paper at the moment. It should be easy to add other formats. Please create an issue (or pull request) if you would like to see any other paper size supported.
 
 Can I install this function using pip?
-> No, this is just a script. It is not currently a Python package.
+> Yes. You can now install this package via `pip install clabeler`.

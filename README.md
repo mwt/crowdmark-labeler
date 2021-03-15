@@ -1,26 +1,48 @@
 # Crowdmark Labeler
 
-This is a Python function which automatically labels exams outputted by Crowdmark using the names of students provided in a `pandas` dataframe. This script depends on `pdfrw`, `reportlab`, and `pandas`. This is designed for assessments which have the "Enable automated matching" option enabled when booklets are generated in Crowdmark. The script will fill the name box that looks like this:
+This is a Python package which automatically labels exams outputted by Crowdmark using the names of students provided in a `pandas` dataframe. This script depends on `pdfrw`, `reportlab`, and `pandas`. This is designed for assessments which have the "Enable automated matching" option enabled when booklets are generated in Crowdmark. The script will fill the name box that looks like this:
 
-![before labeling](https://raw.githubusercontent.com/MattWThomas/crowdmark-labeler/master/assets/before.png)
+![before labeling](https://raw.githubusercontent.com/mwt/crowdmark-labeler/master/assets/before.png)
 
 to make it look like this
 
-![after labeling](https://raw.githubusercontent.com/MattWThomas/crowdmark-labeler/master/assets/after.png)
+![after labeling](https://raw.githubusercontent.com/mwt/crowdmark-labeler/master/assets/after.png)
 
 ## Enviroment
-You can install the dependences with:
+You can install this package with:
 ```
-pip install pandas pdfrw reportlab
+pip install clabeler
+```
+
+## CLI
+
+This package can be called from the command line using the `clabeler` command. It has three required arguments and several optional arguments to set the output and to allow for different column labels in the inputted data.
+
+```
+usage: clabeler [-h] [-O OUTPUT] [--colfname COLFNAME] [--collname COLLNAME] [--colid COLID] labels booklets pagecount
+
+Label exam PDFs from Crowdmark with names of students.
+
+positional arguments:
+  labels               path to a csv containing labels
+  booklets             path to PDF of unlabeled exams
+  pagecount            number of pages per exam
+
+optional arguments:
+  -h, --help           show this help message and exit
+  -O OUTPUT            path to output unlabeled exams
+  --colfname COLFNAME  column label for student's first name
+  --collname COLLNAME  column label for student's last name
+  --colid COLID        column label for student ID
 ```
 
 ## Function
 
-The main Python script, [`clabeler.py`](clabeler.py) defines the function `labelbooklets` defined in the following way:
+In addition to the command line interface, this package defines the function `labelbooklets` defined in the following way:
 ```python
 def labelbooklets(labels, pagecount, booklets="booklets.pdf", output="labeled_booklets.pdf", colfname="fname", collname="lname", colid="netID"):
 ```
-the function takes the arguments
+the function takes the same arguments:
 
 * **labels:** A pandas dataframe containing the student names and netIDs
 * **pagecount:** The number of pages in each exam
@@ -50,6 +72,3 @@ Why does the inserted text look different/bad on my device?
 
 Does this support documents with A4, legal, etc. paper?
 > No, it only supports letter paper at the moment. It should be easy to add other formats. Please create an issue (or pull request) if you would like to see any other paper size supported.
-
-Can I install this function using pip?
-> Yes. You can now install this package via `pip install clabeler`.
